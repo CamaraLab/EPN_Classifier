@@ -53,8 +53,6 @@ Make_null <- function(permutations, bulk, num_genes){
   #Order bulk RNA list of genes by expression
   bulk <- bulk[order(bulk, decreasing = TRUE),, drop = FALSE]
 
-  cat("\n Creating null distribution... ")
-
   for (i in 1:permutations){
     new_es <- NULL
     gene_set <- NULL

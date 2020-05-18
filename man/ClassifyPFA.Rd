@@ -4,7 +4,7 @@
 \alias{ClassifyPFA}
 \title{Classify EPN bulk RNA-seq samples into PF A subgroups (PFA_1 and PFA_2)}
 \usage{
-ClassifyPFA(bulk, permutations)
+ClassifyPFA(bulk, permutations = 10000)
 }
 \arguments{
 \item{bulk}{a matrix of bulk RNA-seq sample (genes by samples) with common gene names (as row.names)}

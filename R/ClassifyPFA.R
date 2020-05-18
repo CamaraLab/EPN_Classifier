@@ -6,14 +6,14 @@
 #'
 #' @export
 #'
-ClassifyPFA <- function(bulk, permutations){
+ClassifyPFA <- function(bulk, permutations = 10000){
 
   if (is.null(bulk)){
-    message(" bulk must be a matrix (genes by samples)")
+    message("bulk must be a matrix (genes by samples)")
     return(NULL)
   }
   if (is.null(row.names(bulk))){
-    message(" bulk must have row names (gene names)")
+    message("bulk must have row names (gene names)")
     return(NULL)
   }
   if (is.null(colnames(bulk))){
@@ -21,7 +21,7 @@ ClassifyPFA <- function(bulk, permutations){
   }
 
   if (class(permutations) != "numeric" | permutations <= 0 | permutations != round(permutations)){
-    message(" permutations must be a numeric whole value greater than zero")
+    message("permutations must be a numeric whole value greater than zero")
     return(NULL)
   }
 
@@ -41,13 +41,13 @@ ClassifyPFA <- function(bulk, permutations){
     x[1:min(sapply(gene_set, length))]
   })
 
-  cat(paste0(" ",round(length(gene_set$PFA_1)/58,2)*100,"% of the PF A marker genes are expressed in your bulk data"))
+  cat(paste0(round(length(gene_set[[1]])/58,2)*100,"% of the PF A marker genes are expressed in your transcriptomic data"))
 
   if (length(gene_set$PFA_1) <= 5){
-    message(" 5 or fewer PFA subgroup marker genes are expressed in your data. This classification might be inaccurate")
+    message("\n5 or fewer PFA subgroup marker genes are expressed in your data. This classification might be inaccurate")
   }
   if (length(gene_set$PFA_1) == 0){
-    message(" None of the PFA subgroup marker genes are expressed in your data. Cannot classify data")
+    message("\nNone of the PFA subgroup marker genes are expressed in your data. Cannot classify data")
     return(NULL)
   }
 
@@ -59,15 +59,21 @@ ClassifyPFA <- function(bulk, permutations){
   classified_samples <- vector(mode="list", length=ncol(bulk))
   names(classified_samples) <- colnames(bulk)
 
-  cat("\n Classifying samples")
 
   for (i in 1:ncol(bulk)){
     #prep bulk sample
     bulk_sample <- bulk[,colnames(bulk)[i], drop = FALSE]
     bulk_sample <- bulk_sample[order(bulk_sample, decreasing = TRUE),, drop = FALSE]
+
+    #index of gene set in bulk sample
+    indx_gene_set <- lapply(gene_set, function(x){
+      c(0, which(row.names((bulk_sample)) %in% x))
+    })
+
     #Find enrichment score for each gene set
-    final_es <- EnrichmentScore(bulk_sample, gene_set)
+    final_es <- internal_EnrichmentScore(nrow(bulk), length(gene_set[[1]]), indx_gene_set)
     classified_samples[[colnames(bulk)[i]]]$es <- final_es
+
     #Pvalue for each enrichment score
     sample_pvalues <- FindPvalue(final_es, null_dist, gene_set)
     classified_samples[[colnames(bulk)[i]]]$pvalue <- sample_pvalues

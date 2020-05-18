@@ -1,31 +1,13 @@
 #'
-#' Classify EPN bulk RNA-seq samples into eight (of the nine) molecular subgroups
+#' Calculate the enrichment score for a single bulk_sample sample and the EPN gene sets
 #'
-#' @param bulk a matrix of bulk RNA-seq sample (genes by samples) with common gene names (as row.names)
-#' @param permutations the number of enrichment scores that will be calculated in order to estimate the sample distribution of enrichment scores
+#' @param bulk_sample a matrix of a single bulk_sample RNA-seq sample (genes by 1)
 #'
 #' @export
 #'
-ClassifyEPN <- function(bulk, permutations = 10000){
+EnrichmentScore_EPN <- function(bulk_sample){
 
-  if (is.null(bulk)){
-    message("bulk must be a matrix (genes by samples)")
-    return(NULL)
-  }
-  if (is.null(row.names(bulk))){
-    message("bulk must have row names (gene names)")
-    return(NULL)
-  }
-  if (is.null(colnames(bulk))){
-    colnames(bulk) <- 1:ncol(bulk)
-  }
-
-  if (class(permutations) != "numeric" | permutations <= 0 | permutations != round(permutations)){
-    message("permutations must be a numeric whole value greater than zero")
-    return(NULL)
-  }
-
-  #List of differentially expressed genes for each PF A subgroup
+  #List of differentially expressed genes for each molecular subgroup
   gene_set <- NULL
   gene_set <- vector(mode = "list")
   gene_set[["ST_EPN_RELA"]] <- c("L1CAM", "GPR153", "ADAP1", "PCP4L1", "FBXO31", "ST8SIA2", "ELAVL3", "CYP27C1", "INPP5A", "P2RX5", "LHX2", "ANGPTL6", "FHDC1", "SLC12A7", "PLCH2", "GNG3", "KCNQ2", "GABRA3", "ADAMTS2", "ADAMTSL4", "WNT7B", "ZNF185", "EPHB2", "ELL3", "CELSR3", "SLC35E4", "COL9A3", "RAP1GAP", "CACNA1I", "HES4", "SRPK3", "KCNK3", "ELFN1", "VIPR1", "KCNK10", "SDC1", "TLX1", "RCOR2", "GAREM2", "HDAC4", "ATP6V1C2", "NOTUM", "LINC00982", "COL18A1", "CACNA2D2", "GUCY1B2", "SP5", "LOC729870", "UNC119", "PRDM16")
@@ -37,9 +19,9 @@ ClassifyEPN <- function(bulk, permutations = 10000){
   gene_set[["SP_MPE"]] <- c("HOXB13", "PRAC1", "NEFL", "HOXA13", "KMO", "SLC39A2", "ARL15", "HOTAIR", "HNF1B", "C14orf105", "LOC101928731", "LOC101060400", "HOXC10", "CYTL1", "HSPB3", "SCGN", "HOXC13", "ACSM3", "LEFTY1", "TM4SF4", "DPP4", "ZNF385B", "NEFM", "DKK1", "MUC3A", "PRAC2", "HMGCS2", "SLC37A4", "SHC4", "CHL1", "DRAIC", "HOXB9", "MTCP1", "LOXL4", "ARMCX2", "CILP", "SLC24A2", "CHST7", "GNA14", "CFD", "MUC12", "LINC00643", "HOXD10", "SOCS2-AS1", "CACHD1", "IGFBP5", "ITGB3", "SLC35F4", "DLGAP1", "RBPMS-AS1")
   gene_set[["ST_SE"]] <- c( "SLC7A3", "GALNT13", "SPX", "CCK", "NXPH3", "HSD17B6", "UNC5D", "HTR2C", "NTSR2", "GJB6", "BHLHE22", "SORCS3", "SETD7", "MYH6", "SST", "NKX2-1", "GJB2", "ACVR1C", "CNGA3", "ARPP21", "STON1", "LINC00672", "PTER", "BRINP1", "KCNK2", "STAC", "RYR1", "ATRNL1", "MYZAP", "GABRA2", "HPCAL4", "CA4", "AK4", "MT1M", "PI15", "MT1G", "ETNPPL", "TSHZ2", "PRR16", "GABRB1", "MYBPC1", "LDLRAD3", "LRAT", "GLDN", "FGF7", "SIM2", "IP6K3", "NXPH1", "SIX3-AS1", "IL33" )
 
-  #Gene set in bulk data
+  #Gene set in bulk_sample data
   gene_set <- lapply(gene_set, function(x){
-    x[x %in% row.names(bulk)]
+    x[x %in% row.names(bulk_sample)]
   })
 
   #Same gene set length
@@ -47,7 +29,7 @@ ClassifyEPN <- function(bulk, permutations = 10000){
     x[1:min(sapply(gene_set, length))]
   })
 
-  cat(paste0(round(length(gene_set[[1]])/50,2)*100,"% of the EPN molecular subgroup marker genes are expressed in your transcriptomic data"))
+  cat(paste0(round(length(gene_set[[1]])/50,2)*100,"% of the EPN molecular subgroup marker genes are expressed in your bulk_sample data"))
 
   if (length(gene_set[[1]]) <= 5){
     message("\n5 or fewer EPN molecular subgroup marker genes are expressed in your data. This classification might be inaccurate")
@@ -57,32 +39,43 @@ ClassifyEPN <- function(bulk, permutations = 10000){
     return(NULL)
   }
 
-  #Estimate the sampling distribution of enrichment scores
-  null_dist <- Make_null(permutations, bulk[,sample(1:ncol(bulk), 1), drop=F], length(gene_set[[1]]))
 
-  #Preallocate list for each bulk sample
-  classified_samples <- NULL
-  classified_samples <- vector(mode="list", length=ncol(bulk))
-  names(classified_samples) <- colnames(bulk)
+  #Preallocate list of each subgroup
+  final_es <- NULL
+  final_es <- vector(mode="list", length=length(gene_set))
+  names(final_es) <- names(gene_set)
 
+  #Order bulk_sample RNA genes by expression
+  bulk_sample <- bulk_sample[order(bulk_sample, decreasing = TRUE),,drop = FALSE]
 
-  for (i in 1:ncol(bulk)){
-    #prep bulk sample
-    bulk_sample <- bulk[,colnames(bulk)[i], drop = FALSE]
-    bulk_sample <- bulk_sample[order(bulk_sample, decreasing = TRUE),, drop = FALSE]
-
-    #index of gene set in bulk sample
-    indx_gene_set <- lapply(gene_set, function(x){
-      c(0, which(row.names((bulk_sample)) %in% x))
-    })
-
-    #Find enrichment score for each gene set
-    final_es <- internal_EnrichmentScore(nrow(bulk), length(gene_set[[1]]), indx_gene_set)
-    classified_samples[[colnames(bulk)[i]]]$es <- final_es
-
-    #Pvalue for each enrichment score
-    sample_pvalues <- FindPvalue(final_es, null_dist, gene_set)
-    classified_samples[[colnames(bulk)[i]]]$pvalue <- sample_pvalues
+  for (i in 1:length(gene_set)){
+    ES <- 0
+    best_ES <- 0
+    #Number of hits
+    Nh <- length(gene_set[[names(gene_set)[i]]])
+    up_ES <- 1/Nh
+    #Number of misses
+    Nm <- dim(bulk_sample)[1] - length(gene_set[[names(gene_set)[i]]])
+    down_ES <- 1 /Nm
+    x <- NULL
+    y <- NULL
+    for (j in 1:nrow(bulk_sample)){
+      if (row.names(bulk_sample)[j] %in% gene_set[[names(gene_set)[i]]]){
+        ES <- ES + up_ES
+      } else{
+        ES <- ES - down_ES
+      }
+      x <- c(x, j)
+      y <- c(y, ES)
+      if (abs(ES) > best_ES){
+        best_sign <- ES/abs(ES)
+        best_ES <- abs(ES)
+      }
+    }
+    final_es[[names(gene_set)[i]]]$es <- best_ES*best_sign
+    final_es[[names(gene_set)[i]]]$x <- x
+    final_es[[names(gene_set)[i]]]$y <- y
   }
-  return(classified_samples)
+
+  return(final_es)
 }

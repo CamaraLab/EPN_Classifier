@@ -27,7 +27,7 @@ EnrichmentScore <- function(bulk, gene_set){
     down_ES <- 1 /Nm
     x <- NULL
     y <- NULL
-    for (j in 1:dim(bulk)[1]){
+    for (j in 1:nrow(bulk)){
       if (row.names(bulk)[j] %in% gene_set[[names(gene_set)[i]]]){
         ES <- ES + up_ES
       } else{

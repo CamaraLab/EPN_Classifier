@@ -15,7 +15,7 @@ FindPvalue <- function(best_es, null_dist, gene_set){
   colnames(pvalue_es) <- names(gene_set)
 
   for (i in 1:length(gene_set)){
-    es <- round(best_es[[names(gene_set)[i]]]$es, 4)
+    es <- round(best_es[[names(gene_set)[i]]], 4)
     if (es > max(null_dist[["freq"]]$x)){
       pvalue_es[1,names(gene_set)[i]] <- 0
     } else {
