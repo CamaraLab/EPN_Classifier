@@ -30,7 +30,8 @@ Plot the running sum statistic (ie. enrichment score ES) for a specific EPN samp
 
 ```{r}
 ES <- EnrichmentScore_EPN(bulk_sample = data[,1,drop=F])
-plot(x = ES$ST_EPN_RELA$x, y = ES$ST_EPN_RELA$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", main = "ST RELA Enrichment Score")
+plot(x = ES$ST_EPN_RELA$x, y = ES$ST_EPN_RELA$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", 
+  main = "ST RELA Enrichment Score")
 ```
 
 ![](examples/Figures_markdown/ESPlot_EPN.png)
@@ -58,7 +59,8 @@ Plot the running sum statistic (ie. enrichment score ES) for a specific PF_A sam
 
 ```{r}
 ES <- EnrichmentScore_PFA(bulk_sample = pfa_data[,1,drop=F])
-plot(x = ES$PFA_1$x, y = ES$PFA_1$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", main = "PFA_1 Enrichment Score")
+plot(x = ES$PFA_1$x, y = ES$PFA_1$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", 
+  main = "PFA_1 Enrichment Score")
 ```
 
 ![](examples/Figures_markdown/ESPlot_PFA.png)
@@ -69,11 +71,6 @@ Assign each sample to a single PFA subgroup.
 ```{r}
 pf_gps <- Classify(classification, min_pvalue = 0.35)
 ```
-\n
-\n
-\n
-\n
-
 
 
 
