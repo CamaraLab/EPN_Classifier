@@ -2,7 +2,7 @@
 EPNClassifier
 ================
 
-EPNClassifier is able to assign ependymal tumors profiled by transcriptomic techniques into distinct subgroup. This method is based on gene set enrichment analysis and utilizes pre-determined gene signatures to calculate a running sum statistic and p-value. Significant p-values can be used to classify EPN tumors into their most-likely molecular subgroup and PFA tumors can be further classified into subtypes (PFA_1 and PFA_2). 
+EPNClassifier is able to assign ependymal tumors profiled by transcriptomic techniques into distinct subgroups. This method is based on gene set enrichment analysis and utilizes pre-determined gene signatures to calculate a running sum statistic and p-value. Significant p-values can be used to classify EPN tumors into their most-likely molecular subgroup and PFA tumors can be further classified into subtypes (PFA_1 and PFA_2). 
 
 Installation
 -----------------
