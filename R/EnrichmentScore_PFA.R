@@ -1,5 +1,5 @@
 #'
-#' Calculate the enrichment score for a single bulk_sample sample and the EPN gene sets
+#' Calculate the enrichment score for a single bulk_sample sample and the PFA gene sets
 #'
 #' @param bulk_sample a matrix of a single bulk_sample RNA-seq sample (genes by 1)
 #'
@@ -23,13 +23,13 @@ EnrichmentScore_PFA <- function(bulk_sample){
     x[1:min(sapply(gene_set, length))]
   })
 
-  cat(paste0(round(length(gene_set[[1]])/58,2)*100,"% of the EPN molecular subgroup marker genes are expressed in your bulk_sample data"))
+  cat(paste0(round(length(gene_set[[1]])/58,2)*100,"% of the PFA subtype marker genes are expressed in your bulk_sample data"))
 
   if (length(gene_set[[1]]) <= 5){
-    message("\n5 or fewer EPN molecular subgroup marker genes are expressed in your data. This classification might be inaccurate")
+    message("\n5 or fewer PFA subtype marker genes are expressed in your data. This classification might be inaccurate")
   }
   if (length(gene_set[[1]]) == 0){
-    message("\nNone of the EPN moleular subgroup marker genes are expressed in your data. Cannot classify data")
+    message("\nNone of the PFA subtype marker genes are expressed in your data. Cannot classify data")
     return(NULL)
   }
 

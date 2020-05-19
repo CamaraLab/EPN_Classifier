@@ -5,7 +5,7 @@ Version: 0.1.0
 Author@R: person("Rachael G.", "Aubin", email = "raubin@seas.upenn.edu", role = c("aut", "cre"))
 Description: EPNClassifier is able to assign of ependymal tumors into transcriptomically
     distinct subgroups. Using pre-defined gene signatures, EPN tumors can be classifed into
-    molecular subgroups and PFA tumors can be classified into subtypes (PFA_1 and PFA_2)
+    molecular subgroups and PFA tumors can be further classified into subtypes (PFA_1 and PFA_2)
 License: GNU General Public License v3.0
 Encoding: UTF-8
 LazyData: true
