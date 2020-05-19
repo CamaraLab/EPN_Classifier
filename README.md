@@ -34,12 +34,15 @@ Plot the running sum statistic (ie. enrichment score ES) over a ranked list of g
 ```{r}
 ES <- EnrichmentScore_EPN(bulk_sample = data[,1,drop=F])
 
-plot(x = ES$ST_EPN_RELA$x, y = ES$ST_EPN_RELA$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", 
-  main = "ST RELA Enrichment Score", cex=.1, ylim = c(-1,1) , panel.first = c(lines(x = ES$ST_EPN_RELA$x, 
-  y = ES$ST_EPN_RELA$y, col = "red"),abline(h = 0)))
+par(mfrow=c(3,3))
+for (i in 1:8){
+  plot(x = ES[[i]]$x, y = ES[[i]]$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", 
+  main = paste0(names(ES)[i]," Enrichment Score"), cex=.1, ylim = c(-1,1) , panel.first = c(lines(x = ES[[i]]$x, 
+  y = ES[[i]]$y, col = "red"),abline(h = 0)))
+}
 ```
 
-![](examples/Figures_markdown/ESPlot_EPN2.png)
+![](examples/Figures_markdown/ESPlot_EPN3.png)
 
 
 
@@ -61,9 +64,14 @@ Plot the running sum statistic (ie. enrichment score ES) over a ranked list of g
 
 ```{r}
 ES <- EnrichmentScore_PFA(bulk_sample = pfa_data[,1,drop=F])
+
+par(mfrow=c(1,2))
 plot(x = ES$PFA_1$x, y = ES$PFA_1$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", 
   main = "PFA_1 Enrichment Score", cex=.1, ylim = c(-1,1) , panel.first = c(lines(x = ES$PFA_1$x, 
   y = ES$PFA_1$y, col = "red"),abline(h = 0)))
+plot(x = ES$PFA_2$x, y = ES$PFA_2$y, xlab = "Rank List of Genes", ylab = "Running Sum Statistic", 
+  main = "PFA_2 Enrichment Score", cex=.1, ylim = c(-1,1) , panel.first = c(lines(x = ES$PFA_2$x, 
+  y = ES$PFA_2$y, col = "red"),abline(h = 0)))  
 ```
 
 ![](examples/Figures_markdown/ESPlot_PFA2.png)
