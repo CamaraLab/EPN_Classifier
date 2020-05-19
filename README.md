@@ -15,7 +15,7 @@ library(EPNClassifier)
 Tutorial
 -----------------
 
-Example data for this tutorial is from [Pajtler K.W. et al., Cancer Cell (2015)](https://www.sciencedirect.com/science/article/pii/S153561081500135X?via%3Dihub) and can be
+Example data for 209 EPN tumors profiled by DNA microarrays is from [Pajtler K.W. et al., Cancer Cell (2015)](https://www.sciencedirect.com/science/article/pii/S153561081500135X?via%3Dihub) and can be
 downloaded [here](https://www.dropbox.com/s/jc87se1hi00w0i3/Normalized_Microarray.txt?dl=1)
 
 ### Classify EPN into their molecular subgroups
