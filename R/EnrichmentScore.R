@@ -2,7 +2,7 @@
 #' Calculate the enrichment score for a single bulk sample and gene set
 #'
 #' @param bulk a matrix of a single bulk RNA-seq sample (genes by 1)
-#' @param gene_set Character vector of genes
+#' @param gene_set List of character vector of genes
 #'
 #' @export
 #'
@@ -14,7 +14,7 @@ EnrichmentScore <- function(bulk, gene_set){
   names(final_es) <- names(gene_set)
 
   #Order bulk RNA genes by expression
-  bulk <- bulk[order(bulk, decreasing = TRUE),,drop = FALSE]
+  #bulk <- bulk[order(bulk, decreasing = TRUE),,drop = FALSE]
 
   for (i in 1:length(gene_set)){
     ES <- 0
@@ -46,3 +46,4 @@ EnrichmentScore <- function(bulk, gene_set){
   }
   return(final_es)
 }
+
