@@ -56,7 +56,7 @@ ClassifyEPN <- function(bulk, permutations = 10000){
     x[1:min(sapply(gene_set, length))]
   })
 
-  cat(paste0(round(length(gene_set[[1]])/50,2)*100,"% of the EPN molecular subgroup marker genes are expressed in your transcriptomic data"))
+  cat(paste0(round(length(gene_set[[1]])/length(gene_set$ST_EPN_RELA),2)*100,"% of the EPN molecular subgroup marker genes are expressed in your transcriptomic data"))
 
   if (length(gene_set[[1]]) <= 5){
     message("\n5 or fewer EPN molecular subgroup marker genes are expressed in your data. This classification might be inaccurate")
