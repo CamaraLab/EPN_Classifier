@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-ClassifyPFA <- function(bulk, permutations = 10000){
+ClassifyPFA <- function(bulk, permutations = 100000){
 
   if (is.null(bulk)){
     message("bulk must be a matrix (genes by samples)")
