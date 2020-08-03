@@ -10,7 +10,7 @@ Classify <- function(classification, min_pvalue = 0.35){
   assign_class <- NULL
   assign_class <- lapply(classification, function(x){
     if (min(x$pvalue) < min_pvalue){
-      assign_class <- c(assign_class, colnames(x$pvalue)[x$pvalue %in% min(x$pvalue)])
+      assign_class <- c(assign_class, paste(colnames(x$pvalue)[x$pvalue %in% min(x$pvalue)], collapse = " & "))
     } else {
       assign_class <- c(assign_class,"NA")
     }
