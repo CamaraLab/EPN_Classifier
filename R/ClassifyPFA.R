@@ -1,5 +1,5 @@
 #'
-#' Classify PFA EPN samples into PF A subgroups (PFA_1 and PFA_2)
+#' Classify into PF A subgroups (PFA_1 and PFA_2)
 #'
 #' @param bulk a matrix of bulk transcriptomics data (genes by samples)
 #' @param permutations the number permutations for a permutation test

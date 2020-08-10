@@ -2,7 +2,7 @@
 % Please edit documentation in R/ClassifyPFA.R
 \name{ClassifyPFA}
 \alias{ClassifyPFA}
-\title{Classify PFA EPN samples into PF A subgroups (PFA_1 and PFA_2)}
+\title{Classify into PF A subgroups (PFA_1 and PFA_2)}
 \usage{
 ClassifyPFA(bulk, permutations = 1e+05)
 }
@@ -12,5 +12,5 @@ ClassifyPFA(bulk, permutations = 1e+05)
 \item{permutations}{the number permutations for a permutation test}
 }
 \description{
-Classify PFA EPN samples into PF A subgroups (PFA_1 and PFA_2)
+Classify into PF A subgroups (PFA_1 and PFA_2)
 }

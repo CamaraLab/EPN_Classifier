@@ -2,7 +2,7 @@
 % Please edit documentation in R/EnrichmentScore_PFA.R
 \name{EnrichmentScore_PFA}
 \alias{EnrichmentScore_PFA}
-\title{Calculate the enrichment score for a single bulk sample
+\title{Calculate the enrichment score
 (with PFA gene set)}
 \usage{
 EnrichmentScore_PFA(bulk_sample)
@@ -11,6 +11,6 @@ EnrichmentScore_PFA(bulk_sample)
 \item{bulk_sample}{a matrix of a single bulk sample (genes by 1)}
 }
 \description{
-Calculate the enrichment score for a single bulk sample
+Calculate the enrichment score
 (with PFA gene set)
 }

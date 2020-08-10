@@ -2,7 +2,7 @@
 % Please edit documentation in R/ClassifyEPN.R
 \name{ClassifyEPN}
 \alias{ClassifyEPN}
-\title{Classify EPN samples into eight (of the nine) molecular subgroups}
+\title{Classify into eight (of the nine) molecular subgroups}
 \usage{
 ClassifyEPN(bulk, permutations = 10000)
 }
@@ -12,5 +12,5 @@ ClassifyEPN(bulk, permutations = 10000)
 \item{permutations}{the number permutations for a permutation test}
 }
 \description{
-Classify EPN samples into eight (of the nine) molecular subgroups
+Classify into eight (of the nine) molecular subgroups
 }

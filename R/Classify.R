@@ -1,5 +1,5 @@
 #'
-#' Assign classificatin
+#' Assign classification
 #'
 #' @param classification a list of ist samples pvalues for each subgroup
 #' @param min_pvalue the lowest p-value that will be used to classify a sample (numeric value)

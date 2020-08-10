@@ -2,7 +2,7 @@
 % Please edit documentation in R/EnrichmentScore_EPN.R
 \name{EnrichmentScore_EPN}
 \alias{EnrichmentScore_EPN}
-\title{Calculate the enrichment score for a single bulk sample
+\title{Calculate the enrichment score
 (with EPN gene set)}
 \usage{
 EnrichmentScore_EPN(bulk_sample)
@@ -11,6 +11,6 @@ EnrichmentScore_EPN(bulk_sample)
 \item{bulk_sample}{a matrix of a single bulk sample (genes by 1)}
 }
 \description{
-Calculate the enrichment score for a single bulk sample
+Calculate the enrichment score
 (with EPN gene set)
 }

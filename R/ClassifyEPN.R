@@ -1,5 +1,5 @@
 #'
-#' Classify EPN samples into eight (of the nine) molecular subgroups
+#' Classify into eight (of the nine) molecular subgroups
 #'
 #' @param bulk a matrix of bulk transcriptomics data (genes by samples)
 #' @param permutations the number permutations for a permutation test

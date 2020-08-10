@@ -2,7 +2,7 @@
 % Please edit documentation in R/Classify.R
 \name{Classify}
 \alias{Classify}
-\title{Assign classificatin}
+\title{Assign classification}
 \usage{
 Classify(classification, min_pvalue = 0.35)
 }
@@ -12,5 +12,5 @@ Classify(classification, min_pvalue = 0.35)
 \item{min_pvalue}{the lowest p-value that will be used to classify a sample (numeric value)}
 }
 \description{
-Assign classificatin
+Assign classification
 }
