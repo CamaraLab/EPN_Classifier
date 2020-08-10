@@ -1,8 +1,8 @@
 #'
-#' Classify EPN bulk RNA-seq samples into eight (of the nine) molecular subgroups
+#' Classify EPN samples into eight (of the nine) molecular subgroups
 #'
-#' @param bulk a matrix of bulk RNA-seq sample (genes by samples) with common gene names (as row.names)
-#' @param permutations the number of enrichment scores that will be calculated in order to estimate the sample distribution of enrichment scores
+#' @param bulk a matrix of bulk transcriptomics data (genes by samples)
+#' @param permutations the number permutations for a permutation test
 #'
 #' @export
 #'

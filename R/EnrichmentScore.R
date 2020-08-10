@@ -1,8 +1,8 @@
 #'
 #' Calculate the enrichment score for a single bulk sample and gene set
 #'
-#' @param bulk a matrix of a single bulk RNA-seq sample (genes by 1)
-#' @param gene_set List of character vector of genes
+#' @param bulk a matrix of a single bulk sample (genes by 1)
+#' @param gene_set List of character vectors of genes
 #'
 #' @export
 #'

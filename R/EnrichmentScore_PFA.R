@@ -1,7 +1,8 @@
 #'
-#' Calculate the enrichment score for a single bulk_sample sample and the PFA gene sets
+#' Calculate the enrichment score for a single bulk sample
+#' (with PFA gene set)
 #'
-#' @param bulk_sample a matrix of a single bulk_sample RNA-seq sample (genes by 1)
+#' @param bulk_sample a matrix of a single bulk sample (genes by 1)
 #'
 #' @export
 #'
