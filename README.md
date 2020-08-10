@@ -12,7 +12,7 @@ Installation
 -----------------
 
 ```{r}
-devtools::install_github("CamaraLab/EPNClassifier")
+devtools::install_github("CamaraLab/EPN_Classifier")
 library(EPNClassifier)
 ```
 
