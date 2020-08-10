@@ -20,6 +20,9 @@ ClassifyEPN <- function(bulk, permutations = 10000){
     colnames(bulk) <- 1:ncol(bulk)
   }
 
+  microarray_genes<-EPNClassifier:::microarray_genes
+  bulk <- bulk[row.names(bulk) %in% microarray_genes,]
+
   if (class(permutations) != "numeric" | permutations <= 0 | permutations != round(permutations)){
     message("permutations must be a numeric whole value greater than zero")
     return(NULL)

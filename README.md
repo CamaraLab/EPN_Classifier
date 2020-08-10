@@ -54,7 +54,7 @@ Calculate the overall running sum statistics and p-vlaues for each PF_A tumor.
 #Restrict to PFA tumors
 pfa_data <- data[,names(molec_gps)[molec_gps %in% "PF_EPN_A"]]
 
-classification_pf <- ClassifyPFA(bulk = pfa_data, permutations = 10000)
+classification_pf <- ClassifyPFA(bulk = pfa_data, permutations = 100000)
 
 #Assign each sample to a single PFA subtype
 pf_gps <- Classify(classification_pf, min_pvalue = 0.35)
