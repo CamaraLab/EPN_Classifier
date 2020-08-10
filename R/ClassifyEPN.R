@@ -20,7 +20,7 @@ ClassifyEPN <- function(bulk, permutations = 10000){
     colnames(bulk) <- 1:ncol(bulk)
   }
 
-  microarray_genes<-EPNClassifier:::microarray_genes
+  # Subset of genes expressed in microarray data
   bulk <- bulk[row.names(bulk) %in% microarray_genes,]
 
   if (class(permutations) != "numeric" | permutations <= 0 | permutations != round(permutations)){
