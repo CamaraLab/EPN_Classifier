@@ -2,7 +2,11 @@
 EPNClassifier
 ================
 
-EPNClassifier is able to assign ependymal tumors profiled by transcriptomic techniques into distinct subgroups. This method is based on gene set enrichment analysis and utilizes pre-determined gene signatures to calculate a running sum statistic and p-value. Significant p-values can be used to classify EPN tumors into their most-likely molecular subgroup and PFA tumors can be further classified into subtypes (PFA_1 and PFA_2). 
+EPNClassifier assigns ependymal tumors profiled by bulk transcriptomics (RNA-seq or microarrays) into molecular subgroups from [*Pajtler K.W. et al., Cancer Cell 27 (2015)*](https://www.sciencedirect.com/science/article/pii/S153561081500135X?via%3Dihub) and [*Pajtler K.W. et al., Acta Neuropathol 136 (2018)*](https://link.springer.com/article/10.1007/s00401-018-1877-0). It is based on gene set enrichment analysis of pre-determined gene signatures. Significant p-values can be used to classify EPN tumors into their most-likely molecular subgroup. PFA tumors can be further classified into subtypes (PFA_1 and PFA_2). The training error of EPNClassifier is 1.4% and its test error across platforms is estimated to be <7%. More information abot EPNClassifier can be found in:
+
+- Aubin R.\*, Troisi E. C.\*, Alghalith A. N., Nasrallah M. P., Santi M., and Camara P. G., *"Cell Ecosystem and Signaling Pathways of Primary and Metastatic
+Pediatric Posterior Fossa Ependymoma"*. Submitted.
+
 
 Installation
 -----------------
@@ -15,7 +19,7 @@ library(EPNClassifier)
 Tutorial
 -----------------
 
-Example data for 209 EPN tumors profiled by DNA microarrays is from [Pajtler K.W. et al., Cancer Cell (2015)](https://www.sciencedirect.com/science/article/pii/S153561081500135X?via%3Dihub) and can be
+Example data for 209 EPN tumors profiled by DNA microarrays in [*Pajtler K.W. et al., Cancer Cell 27 (2015)*](https://www.sciencedirect.com/science/article/pii/S153561081500135X?via%3Dihub) and can be
 downloaded [here](https://www.dropbox.com/s/jc87se1hi00w0i3/Normalized_Microarray.txt?dl=1)
 
 ### Classify EPN into their molecular subgroups
