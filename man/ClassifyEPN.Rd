@@ -2,15 +2,15 @@
 % Please edit documentation in R/ClassifyEPN.R
 \name{ClassifyEPN}
 \alias{ClassifyEPN}
-\title{Classify EPN bulk RNA-seq samples into eight (of the nine) molecular subgroups}
+\title{Classify EPN samples into eight (of the nine) molecular subgroups}
 \usage{
 ClassifyEPN(bulk, permutations = 10000)
 }
 \arguments{
-\item{bulk}{a matrix of bulk RNA-seq sample (genes by samples) with common gene names (as row.names)}
+\item{bulk}{a matrix of bulk transcriptomics data (genes by samples)}
 
-\item{permutations}{the number of enrichment scores that will be calculated in order to estimate the sample distribution of enrichment scores}
+\item{permutations}{the number permutations for a permutation test}
 }
 \description{
-Classify EPN bulk RNA-seq samples into eight (of the nine) molecular subgroups
+Classify EPN samples into eight (of the nine) molecular subgroups
 }

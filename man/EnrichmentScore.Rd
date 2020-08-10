@@ -7,9 +7,9 @@
 EnrichmentScore(bulk, gene_set)
 }
 \arguments{
-\item{bulk}{a matrix of a single bulk RNA-seq sample (genes by 1)}
+\item{bulk}{a matrix of a single bulk sample (genes by 1)}
 
-\item{gene_set}{Character vector of genes}
+\item{gene_set}{List of character vectors of genes}
 }
 \description{
 Calculate the enrichment score for a single bulk sample and gene set
