@@ -7,6 +7,8 @@ EPNClassifier assigns ependymal tumors profiled by bulk transcriptomics (RNA-seq
 - Aubin R.\*, Troisi E. C.\*, Alghalith A. N., Nasrallah M. P., Santi M., and Camara P. G., *"Cell Ecosystem and Signaling Pathways of Primary and Metastatic
 Pediatric Posterior Fossa Ependymoma"*. Submitted.
 
+To cite this code: [![DOI](https://zenodo.org/badge/264224369.svg)](https://zenodo.org/badge/latestdoi/264224369)
+
 
 Installation
 -----------------
